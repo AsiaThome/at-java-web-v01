@@ -12,9 +12,11 @@ public class FreeCalculationTest {
     @Test
     public void testElementSearchMethods() {
         open("https://slqa.ru/cases/fc/v01/");
-        $(By.name("sum")).setValue("1000");
+        SelenideElement myElement = $("input[name=sum]");
+        myElement.sendKeys("500");
         $(By.name("submit")).click();
-        $(By.name("sum")).clear(); type("500");
+        myElement.type("1000");
         $(By.name("submit")).click();
+        myElement.setValue("1000");
     }
 }
