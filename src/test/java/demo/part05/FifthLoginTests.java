@@ -52,7 +52,7 @@ public class FifthLoginTests {
         $("#greeting").shouldBe(visible);
     }
 
-    @Test
+    @Tag("SmokeTest")
     @DisplayName("02. Корректный логин, пароль не соответствует логину - ошибка")
     void test02_error_wrong_password() {
         $("#username").sendKeys("standard_user");
@@ -65,7 +65,7 @@ public class FifthLoginTests {
         $("#greeting").shouldNotBe(visible);
     }
 
-    @Test
+    @Test @Tag("SmokeTest")
     @DisplayName("03. Корректные логин и пароль - успешный вход в систему по нажатию клавиши Enter на клавиатуре")
     void test03_success_login_enter() {
         $("#username").sendKeys("standard_user");
@@ -78,7 +78,7 @@ public class FifthLoginTests {
         $("#greeting").shouldBe(visible);
     }
 
-    @Test
+    @Test @Tag("SmokeTest")
     @DisplayName("04. Выход из системы")
     void test04_logout_success() {
         $("#username").sendKeys("standard_user");
