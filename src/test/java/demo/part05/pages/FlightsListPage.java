@@ -13,7 +13,6 @@ public class FlightsListPage {
     public void isNoFlights() {
         flightsTable.shouldHave(text("Рейсов по вашему запросу не найдено."));
     }
-
     public void registerToFirstFlight() {
         this.registerButton.click();
     }
