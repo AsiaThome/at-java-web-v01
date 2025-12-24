@@ -1,4 +1,4 @@
-package demo.part07;
+package work.part07;
 
 import static com.codeborne.selenide.Selenide.open;
 import static com.codeborne.selenide.Selenide.sleep;
@@ -120,6 +120,7 @@ public class POMFlightsTests {
         FlightsListPage flightsList = new FlightsListPage();
         flightsList.isNoFlights();
 
-        flightsList.newSearch
+        flightsList.newSearch();
+        searchPage.search
     }
 }

@@ -1,4 +1,4 @@
-package demo.part05;
+package demo.part07;
 
 import static com.codeborne.selenide.Selenide.*;
 import static com.codeborne.selenide.WebDriverRunner.getWebDriver;

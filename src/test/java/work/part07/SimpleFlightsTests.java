@@ -1,4 +1,4 @@
-package work.part07.part07;
+package work.part07;
 
 import com.codeborne.selenide.logevents.SelenideLogger;
 import io.qameta.allure.selenide.AllureSelenide;
