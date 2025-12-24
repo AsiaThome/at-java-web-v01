@@ -12,7 +12,8 @@ public class LoginPage {
         password = $("#password"),
         loginButton = $("#loginButton"),
         errorMessage = $("#message"),
-        greeting = $("#greeting");
+        greeting = $("#greeting"),
+        logoutButton = $("#logoutButton");
 
     @Step("Вход в систему")
     public void login(String username, String password) {
@@ -31,4 +32,13 @@ public class LoginPage {
         this.greeting.shouldHave(text("Добро пожаловать, " + fio + "!"));
     }
 
+    @Step("Выход из системы")
+    public void Logout(){this.logoutButton.click();}
+
+    @Step("Успешный выход из системы")
+    public void isSuccessfulLogout(){this.errorMessage.exists();}
+
+    @Step("Заблокированный пользователь")
+    public void isUserBlocked() {this.errorMessage.shouldHave(text("Пользователь заблокирован."));
+    }
 }

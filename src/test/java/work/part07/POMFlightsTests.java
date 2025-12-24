@@ -1,13 +1,12 @@
 package work.part07;
 
 import static com.codeborne.selenide.Selenide.open;
-import static com.codeborne.selenide.Selenide.sleep;
 import static com.codeborne.selenide.WebDriverRunner.getWebDriver;
 import com.codeborne.selenide.logevents.SelenideLogger;
-import demo.part07.pages.FlightsListPage;
-import demo.part07.pages.LoginPage;
-import demo.part07.pages.RegistrationPage;
-import demo.part07.pages.SearchPage;
+import work.part07.pages.FlightsListPage;
+import work.part07.pages.LoginPage;
+import work.part07.pages.RegistrationPage;
+import work.part07.pages.SearchPage;
 import io.qameta.allure.selenide.AllureSelenide;
 import org.junit.jupiter.api.*;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -26,6 +25,7 @@ public class POMFlightsTests {
         open("https://slqamsk.github.io/cases/slflights/v01/");
         getWebDriver().manage().window().maximize();
     }
+
     // ... Автотесты
     // 1. Неуспешный логин
     @Test
@@ -46,6 +46,7 @@ public class POMFlightsTests {
         searchPage.search("");
         searchPage.isDepartureDateEmpty();
     }
+
     // 3. Не найдены рейсы
     @Test
     void test03FlightsNotFound() {
@@ -107,20 +108,37 @@ public class POMFlightsTests {
 
     // 6. Успешный логин под разными пользователями.
     @ParameterizedTest
-    @CsvFileSource (resources = "logins.csv")
+    @CsvFileSource(resources = "logins.csv")
     void test06MuliLogin(String userName, String passWord, String fio) {
         LoginPage lp = new LoginPage();
-        lp.login(userName,passWord);
+        lp.login(userName, passWord);
         lp.isLoginSuccessful(fio);
-        sleep(5000);
     }
-    // 8. Прошлая дата/рейс не наден
-    @Test
-    void test08LongTest() {
-        FlightsListPage flightsList = new FlightsListPage();
-        flightsList.isNoFlights();
 
-        flightsList.newSearch();
-        searchPage.search
+    // 7. Проверить кнопку выхода (Logout).
+    @Test
+    void test07LogoutHomeworkSoboleva() {
+        LoginPage loginPage = new LoginPage();
+        loginPage.login("standard_user", "stand_pass1");
+        loginPage.Logout();
+        loginPage.isSuccessfulLogout();
+    }
+    // 8. Проверить заблокированного пользователя.
+    @Test
+    void test08BlockedUserHomeworkSoboleva() {
+        LoginPage loginPage = new LoginPage();
+        loginPage.login("locked_out_user", "lock_pass2");
+        loginPage.isUserBlocked();
+    }
+    // 9. Проверить поиск с прошедшей датой.
+    @Test
+    void test09DateInPastHomeworkSoboleva() {
+        LoginPage loginPage = new LoginPage();
+        loginPage.login("standard_user", "stand_pass1");
+        loginPage.isLoginSuccessful("Иванов Иван Иванович");
+
+        SearchPage searchPage = new SearchPage();
+        searchPage.search("23.12.2025");
+        searchPage.isDateInPast();
     }
 }
